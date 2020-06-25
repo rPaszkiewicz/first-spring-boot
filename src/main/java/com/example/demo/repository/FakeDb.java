@@ -13,11 +13,11 @@ import java.util.stream.Stream;
 @Repository("fakeDao")
 public class FakeDb implements dataBaseDao{
 
-    private static Map<String, Laptop> DB = new HashMap<>();
+    private static Map<Integer, Laptop> DB = new HashMap<>();
 
     @Override
-    public void addLaptop(Laptop laptop){
-        DB.put(laptop.getMake(),laptop);
+    public void addLaptop(int id,Laptop laptop){
+        DB.put(id, laptop);
     }
 
     @Override
@@ -26,7 +26,12 @@ public class FakeDb implements dataBaseDao{
     }
 
     @Override
-    public Laptop getLaptopByMake(String make){
-       return DB.get(make);
+    public Laptop getLaptopById(int id){
+       return DB.get(id);
+    }
+
+    @Override
+    public void removeLaptopById(int id) {
+        DB.remove(id);
     }
 }

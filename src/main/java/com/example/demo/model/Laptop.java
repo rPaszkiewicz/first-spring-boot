@@ -3,6 +3,7 @@ package com.example.demo.model;
 public class Laptop {
     private String make;
     private double price;
+    private int id;
 
     public Laptop() {
     }
@@ -10,6 +11,12 @@ public class Laptop {
     public Laptop(String make, double price) {
         this.make = make;
         this.price = price;
+    }
+
+    public Laptop(String make, double price, int id) {
+        this.make = make;
+        this.price = price;
+        this.id = id;
     }
 
     public String getMake() {
@@ -28,11 +35,20 @@ public class Laptop {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Laptop{" +
                 "make='" + make + '\'' +
                 ", price=" + price +
+                ", id=" + id +
                 '}';
     }
 }

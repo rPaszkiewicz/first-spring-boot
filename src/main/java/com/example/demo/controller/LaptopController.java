@@ -29,9 +29,14 @@ public class LaptopController {
         return fakeDbService.getLaptops();
     }
 
-    @GetMapping("/getLaptops/{make}")
-    public Laptop getLaptopByMake(@PathVariable String make){
-        return fakeDbService.getLaptopByMake(make);
+    @GetMapping("/getLaptops/{id}")
+    public Laptop getLaptopById(@PathVariable int id){
+        return fakeDbService.getLaptopByMake(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteLaptopById(@PathVariable int id){
+        fakeDbService.removeLaptopById(id);
     }
     
 }

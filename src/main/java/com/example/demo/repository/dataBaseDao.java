@@ -2,14 +2,21 @@ package com.example.demo.repository;
 
 import com.example.demo.model.Laptop;
 import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Random;
 
 public interface dataBaseDao {
 
-    void addLaptop(Laptop laptop);
+    void addLaptop(int id, Laptop laptop);
+
+    default void addLaptop(Laptop laptop){
+        Random random = new Random();
+        int rand = random.nextInt(100);
+        addLaptop(rand,laptop);
+    }
 
     Collection<Laptop> getLaptops();
 
-    Laptop getLaptopByMake(String Make);
+    Laptop getLaptopById(int id);
+
+    void removeLaptopById(int id);
 }
