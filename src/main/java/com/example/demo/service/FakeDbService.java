@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class FakeDbService {
@@ -18,19 +20,28 @@ public class FakeDbService {
         this.fakeDb = fakeDb;
     }
 
-    public void addLaptops(String make, double price) {
-        fakeDb.addLaptop(new Laptop(make,price));
+    private int createId(){
+        Random random = new Random();
+        return random.nextInt(100);
+    }
+
+    public void addLaptop(String make, double price) {
+        Laptop laptop = new Laptop();
+        laptop.setMake(make);
+        laptop.setPrice(price);
+        laptop.setId(createId());
+        fakeDb.addLaptop(laptop);
     }
 
     public Collection<Laptop> getLaptops(){
         return fakeDb.getLaptops();
     }
 
-    public Laptop getLaptopByMake(int id){
+    public Laptop getLaptopById(int id){
        return fakeDb.getLaptopById(id);
     }
 
-    public void removeLaptopById(int id){
+    public void removeLaptopById(int id) {
         fakeDb.removeLaptopById(id);
     }
 }

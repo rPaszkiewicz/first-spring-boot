@@ -4,19 +4,19 @@ public class Laptop {
     private String make;
     private double price;
     private int id;
-
     public Laptop() {
-    }
-
-    public Laptop(String make, double price) {
-        this.make = make;
-        this.price = price;
     }
 
     public Laptop(String make, double price, int id) {
         this.make = make;
         this.price = price;
         this.id = id;
+    }
+
+    public Laptop(String make, double price) {
+        this.make = make;
+        this.price = price;
+
     }
 
     public String getMake() {

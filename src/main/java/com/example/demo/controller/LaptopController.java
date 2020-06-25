@@ -19,24 +19,29 @@ public class LaptopController {
         this.fakeDbService = fakeDbService;
     }
 
-    @PostMapping("/add/{make}/{price}")
+    @PostMapping("/{make}/{price}")
     public void setLap(@PathVariable String make, @PathVariable double price) {
-        fakeDbService.addLaptops(make,price);
+        fakeDbService.addLaptop(make,price);
     }
 
-    @GetMapping(path = "/getLaptops",produces = "application/json")
+    @GetMapping
     public Collection<Laptop> getLaptops() {
         return fakeDbService.getLaptops();
     }
 
-    @GetMapping("/getLaptops/{id}")
-    public Laptop getLaptopById(@PathVariable int id){
-        return fakeDbService.getLaptopByMake(id);
+    @GetMapping("/{id}")
+    public Laptop getLaptopByMake(@PathVariable int id){
+        return fakeDbService.getLaptopById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/remove/{id}")
     public void deleteLaptopById(@PathVariable int id){
         fakeDbService.removeLaptopById(id);
+    }
+
+    @PutMapping()
+    public void updateLaptop(){
+
     }
     
 }

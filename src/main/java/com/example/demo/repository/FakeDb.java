@@ -16,8 +16,9 @@ public class FakeDb implements dataBaseDao{
     private static Map<Integer, Laptop> DB = new HashMap<>();
 
     @Override
-    public void addLaptop(int id,Laptop laptop){
-        DB.put(id, laptop);
+    public int addLaptop(Laptop laptop){
+       DB.put(laptop.getId(),laptop);
+       return 1;
     }
 
     @Override
