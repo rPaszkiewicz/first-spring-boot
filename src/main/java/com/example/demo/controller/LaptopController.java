@@ -20,7 +20,11 @@ public class LaptopController {
     }
 
     @PostMapping
+<<<<<<< HEAD
     public void setLap(@RequestBody Laptop laptop) {
+=======
+    public void setLaptop(@RequestBody Laptop laptop){
+>>>>>>> putMapping
         fakeDbService.addLaptop(laptop);
     }
 
@@ -44,9 +48,9 @@ public class LaptopController {
         fakeDbService.removeLaptopById(id);
     }
 
-    @PutMapping()
-    public void updateLaptop(){
-
+    @PutMapping("/update/{id}")
+    public void updateLaptop(@PathVariable int id, @RequestBody Laptop laptop ){
+        fakeDbService.updateLaptop(id,laptop);
     }
     
 }
