@@ -39,7 +39,7 @@ public class LaptopController {
         return fakeDbService.getLaptopById(id);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public void deleteLaptopById(@PathVariable int id){
         fakeDbService.removeLaptopById(id);
     }
