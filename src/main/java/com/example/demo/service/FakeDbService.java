@@ -30,11 +30,6 @@ public class FakeDbService {
         fakeDb.addLaptop(laptop);
     }
 
-    public void addLaptop(Laptop laptop){
-        laptop.setId(createId());
-        fakeDb.addLaptop(laptop);
-    }
-
     public void addLaptop(String make, double price) {
         Laptop laptop = new Laptop();
         laptop.setMake(make);
@@ -53,9 +48,5 @@ public class FakeDbService {
 
     public void removeLaptopById(int id) {
         fakeDb.removeLaptopById(id);
-    }
-
-    public void updateLaptop(int id, Laptop laptop){
-        fakeDb.updateLaptop(id,laptop);
     }
 }
