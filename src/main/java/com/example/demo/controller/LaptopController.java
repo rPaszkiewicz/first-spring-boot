@@ -9,7 +9,7 @@ import java.util.Collection;
 
 
 @RestController
-@RequestMapping("/laptop")
+@RequestMapping("/laptops")
 public class LaptopController {
 
     private final FakeDbService fakeDbService;
@@ -19,9 +19,14 @@ public class LaptopController {
         this.fakeDbService = fakeDbService;
     }
 
+    @PostMapping
+    public void setLap(@RequestBody Laptop laptop) {
+        fakeDbService.addLaptop(laptop);
+    }
+
     @PostMapping("/{make}/{price}")
     public void setLap(@PathVariable String make, @PathVariable double price) {
-        fakeDbService.addLaptop(make,price);
+        fakeDbService.addLaptop(make, price);
     }
 
     @GetMapping
@@ -34,7 +39,7 @@ public class LaptopController {
         return fakeDbService.getLaptopById(id);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public void deleteLaptopById(@PathVariable int id){
         fakeDbService.removeLaptopById(id);
     }

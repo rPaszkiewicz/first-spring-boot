@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Laptop;
+import com.example.demo.repository.FakeDb;
 import com.example.demo.repository.dataBaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +24,10 @@ public class FakeDbService {
     private int createId(){
         Random random = new Random();
         return random.nextInt(100);
+    }
+    public void addLaptop(Laptop laptop){
+        laptop.setId(createId());
+        fakeDb.addLaptop(laptop);
     }
 
     public void addLaptop(String make, double price) {

@@ -4,6 +4,7 @@ public class Laptop {
     private String make;
     private double price;
     private int id;
+
     public Laptop() {
     }
 
