@@ -9,7 +9,7 @@ import java.util.Collection;
 
 
 @RestController
-@RequestMapping("/laptop")
+@RequestMapping("/laptops")
 public class LaptopController {
 
     private final FakeDbService fakeDbService;
@@ -17,6 +17,11 @@ public class LaptopController {
     @Autowired
     public LaptopController(FakeDbService fakeDbService) {
         this.fakeDbService = fakeDbService;
+    }
+
+    @PostMapping
+    public void setLaptop(@RequestBody Laptop laptop){
+        fakeDbService.addLaptop(laptop);
     }
 
     @PostMapping("/{make}/{price}")

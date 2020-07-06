@@ -25,6 +25,11 @@ public class FakeDbService {
         return random.nextInt(100);
     }
 
+    public void addLaptop(Laptop laptop){
+        laptop.setId(createId());
+        fakeDb.addLaptop(laptop);
+    }
+
     public void addLaptop(String make, double price) {
         Laptop laptop = new Laptop();
         laptop.setMake(make);
