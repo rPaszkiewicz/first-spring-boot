@@ -49,4 +49,8 @@ public class FakeDbService {
     public void removeLaptopById(int id) {
         fakeDb.removeLaptopById(id);
     }
+
+    public void updateLaptop(int id, Laptop laptop){
+        fakeDb.updateLaptop(id,laptop);
+    }
 }
