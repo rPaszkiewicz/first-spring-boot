@@ -15,4 +15,6 @@ public interface dataBaseDao {
     Laptop getLaptopById(int id);
 
     void removeLaptopById(int id);
+
+    void updateLaptop(int id, Laptop lap);
 }

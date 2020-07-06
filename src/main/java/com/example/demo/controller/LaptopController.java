@@ -39,9 +39,9 @@ public class LaptopController {
         fakeDbService.removeLaptopById(id);
     }
 
-    @PutMapping()
-    public void updateLaptop(){
-
+    @PutMapping("/update/{id}")
+    public void updateLaptop(@PathVariable int id, @RequestBody Laptop laptop ){
+        fakeDbService.updateLaptop(id,laptop);
     }
     
 }
