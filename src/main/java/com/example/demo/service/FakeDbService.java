@@ -51,6 +51,9 @@ public class FakeDbService {
     }
 
     public void updateLaptop(int id, Laptop laptop){
-        fakeDb.updateLaptop(id,laptop);
+        Laptop laptop1 = fakeDb.getLaptopById(id);
+        laptop1.setMake(laptop.getMake());
+        laptop1.setPrice(laptop.getPrice());
+        fakeDb.updateLaptop(id,laptop1);
     }
 }

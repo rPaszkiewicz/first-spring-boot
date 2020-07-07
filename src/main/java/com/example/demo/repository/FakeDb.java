@@ -38,10 +38,6 @@ public class FakeDb implements dataBaseDao{
 
     @Override
     public void updateLaptop(int id, Laptop lap) {
-        Laptop laptop = DB.get(id);
-        laptop.setMake(lap.getMake());
-        laptop.setPrice(lap.getPrice());
-
-        DB.put(laptop.getId(),laptop);
+        DB.put(id,lap);
     }
 }
