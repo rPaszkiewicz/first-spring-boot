@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Stream;
 
 @Service
 public class FakeDbService {
@@ -21,11 +22,12 @@ public class FakeDbService {
         this.fakeDb = fakeDb;
     }
 
-    private int createId(){
+    private int createId() {
         Random random = new Random();
         return random.nextInt(100);
     }
-    public void addLaptop(Laptop laptop){
+
+    public void addLaptop(Laptop laptop) {
         laptop.setId(createId());
         fakeDb.addLaptop(laptop);
     }
@@ -38,22 +40,31 @@ public class FakeDbService {
         fakeDb.addLaptop(laptop);
     }
 
-    public Collection<Laptop> getLaptops(){
+    public Collection<Laptop> getLaptops() {
         return fakeDb.getLaptops();
     }
 
-    public Laptop getLaptopById(int id){
-       return fakeDb.getLaptopById(id);
+    public Optional<Laptop> getLaptopById(int id) {
+        return Optional.ofNullable(fakeDb.getLaptopById(id));
+
     }
 
-    public void removeLaptopById(int id) {
-        fakeDb.removeLaptopById(id);
+    public int removeLaptopById(int id) {
+        if (Optional.ofNullable(fakeDb.getLaptopById(id)).isPresent()) {
+            fakeDb.removeLaptopById(id);
+            return 1;
+        }
+        return 0;
     }
 
-    public void updateLaptop(int id, Laptop laptop){
-        Laptop laptop1 = fakeDb.getLaptopById(id);
-        laptop1.setMake(laptop.getMake());
-        laptop1.setPrice(laptop.getPrice());
-        fakeDb.updateLaptop(id,laptop1);
+    public int updateLaptop(int id, Laptop laptop) {
+        if (Optional.ofNullable(fakeDb.getLaptopById(id)).isPresent()) {
+            Laptop laptop1 = fakeDb.getLaptopById(id);
+            laptop1.setMake(laptop.getMake());
+            laptop1.setPrice(laptop.getPrice());
+            fakeDb.updateLaptop(id, laptop1);
+            return 1;
+        }
+        return 0;
     }
 }

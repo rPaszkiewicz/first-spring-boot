@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.FakeDbService;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 @RestController
@@ -20,13 +21,15 @@ public class LaptopController {
     }
 
     @PostMapping
-    public void setLap(@RequestBody Laptop laptop) {
+    public String setLap(@RequestBody Laptop laptop) {
         fakeDbService.addLaptop(laptop);
+        return "Added " + laptop;
     }
 
     @PostMapping("/{make}/{price}")
-    public void setLap(@PathVariable String make, @PathVariable double price) {
+    public String setLap(@PathVariable String make, @PathVariable double price) {
         fakeDbService.addLaptop(make, price);
+        return "Added " + make + price;
     }
 
     @GetMapping
@@ -35,18 +38,21 @@ public class LaptopController {
     }
 
     @GetMapping("/{id}")
-    public Laptop getLaptopByMake(@PathVariable int id){
+    public Optional<Laptop> getLaptopByMake(@PathVariable int id) {
         return fakeDbService.getLaptopById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteLaptopById(@PathVariable int id){
-        fakeDbService.removeLaptopById(id);
+    public String deleteLaptopById(@PathVariable int id) {
+        return fakeDbService.removeLaptopById(id) > 0 ?
+                "deleted laptop id " + id : "id " + id + " not found";
     }
 
     @PutMapping("/{id}")
-    public void updateLaptop(@PathVariable int id, @RequestBody Laptop laptop ){
-        fakeDbService.updateLaptop(id,laptop);
+    public String updateLaptop(@PathVariable int id, @RequestBody Laptop laptop) {
+        return fakeDbService.updateLaptop(id, laptop) > 0 ?
+                "updated " + laptop : "no laptop under id " + id + " found";
+
     }
-    
+
 }
