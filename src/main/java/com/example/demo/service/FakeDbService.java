@@ -23,13 +23,16 @@ public class FakeDbService {
     }
 
     private int createId() {
-        Random random = new Random();
-        return random.nextInt(100);
+        return new Random().nextInt(100);
     }
 
-    public void addLaptop(Laptop laptop) {
-        laptop.setId(createId());
-        fakeDb.addLaptop(laptop);
+    public int addLaptop(Laptop laptop) {
+        if (fakeDb.getLaptopById(laptop.getId()) == null) {
+            laptop.setId(createId());
+            fakeDb.addLaptop(laptop);
+            return 1;
+        }
+        return 0;
     }
 
     public void addLaptop(String make, double price) {
@@ -44,8 +47,8 @@ public class FakeDbService {
         return fakeDb.getLaptops();
     }
 
-    public Optional<Laptop> getLaptopById(int id) {
-        return Optional.ofNullable(fakeDb.getLaptopById(id));
+    public Laptop getLaptopById(int id) {
+        return Optional.ofNullable(fakeDb.getLaptopById(id)).orElse(new Laptop());
 
     }
 

@@ -22,8 +22,8 @@ public class LaptopController {
 
     @PostMapping
     public String setLap(@RequestBody Laptop laptop) {
-        fakeDbService.addLaptop(laptop);
-        return "Added " + laptop;
+        return fakeDbService.addLaptop(laptop) > 0 ?
+                "added laptop " + laptop : "given id " + laptop.getId() + " already taken";
     }
 
     @PostMapping("/{make}/{price}")
@@ -38,7 +38,7 @@ public class LaptopController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Laptop> getLaptopByMake(@PathVariable int id) {
+    public Laptop getLaptopById(@PathVariable int id) {
         return fakeDbService.getLaptopById(id);
     }
 
